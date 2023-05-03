@@ -3,12 +3,16 @@
 Game::Game()
 {
     // Création de la fenêtre
-    this->window.create(VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Window");
+    this->window.create(VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Window"); 
+
+    this->entityList[0] = &this->player;  
+
+    
 }
 
 void Game::start()
 {
-    while (this->window.isOpen())
+    while (this->window.isOpen()) 
     {
         // Events
         eventHandler();
@@ -23,9 +27,10 @@ void Game::start()
 
 void Game::eventHandler()
 {
-    while (this->window.pollEvent(this->event)) 
+    Event event;
+    while (this->window.pollEvent(event)) 
     {
-        if (this->event.type == Event::Closed) 
+        if (event.type == Event::Closed) 
             this->window.close(); 
     }
 }
@@ -38,11 +43,14 @@ void Game::update()
 void Game::display()
 {
     // Met à jour le rendu
-    this->window.clear();
+    this->window.clear(); 
 
+    for (int i = 0; i < 1; i++) 
+    {
+        this->window.draw((*this->entityList[i]).getSprite());
+    }
 
-
-    this->window.display();
+    this->window.display(); 
 }
 
 //// Chargement de l'image

@@ -8,9 +8,10 @@ class Entity
 {
 public:
 	Entity();
-	virtual void draw(RenderWindow window) = 0; // Méthode virtuelle pure
+	Sprite getSprite();
 
 private:
+	Sprite sprite;
 
 };
 

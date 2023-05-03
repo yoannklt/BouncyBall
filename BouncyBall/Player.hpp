@@ -8,7 +8,7 @@ using namespace sf;
 class Player : public Entity
 { 
 public:
-	void draw(RenderWindow window);
+	Player() : Entity() {}
 
 private:
 
