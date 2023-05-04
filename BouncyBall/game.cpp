@@ -5,7 +5,6 @@ Game::Game()
     // Création de la fenêtre
     this->window.create(VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Window"); 
 
-    this->entityList[0] = &this->player;  
 
     
 }
@@ -47,43 +46,30 @@ void Game::display()
 
     for (int i = 0; i < 1; i++) 
     {
-        this->window.draw((*this->entityList[i]).getSprite());
+        this->window.draw(this->entityList[i]->image.sprite);
     }
 
     this->window.display(); 
 }
 
-//// Chargement de l'image
-//Texture texture;
-//if (!texture.loadFromFile("img/ball.png"))
-//return -1; // Erreur lors du chargement de l'image 
-//
-//// Création du sprite et affectation de la texture 
-//Sprite sprite;
-//sprite.setTexture(texture);
-//
-//// Redimensionnement du sprite
-//sprite.setScale(0.3, 0.3); // Double la taille de l'image  
-//
-//// Positionnement du sprite
-//sprite.setPosition(ball.getPosition()[0], ball.getPosition()[1]);
-//
-//
-//// Boucle de jeu
-//while (window.isOpen())
-//{
-//    // Gestion des événements
-//    Event event;
-//    while (window.pollEvent(event))
-//    {
-//        eventHandler(event, window);
-//    }
-//
-//
-//    sprite.setPosition(ball.getPosition()[0], ball.getPosition()[1]);
-//    // Mise à jour et rendu
-//    window.clear();
-//    // Dessin de la scène ici
-//    window.draw(sprite);
-//    window.display();
-//}
+int Game::imageCreation(string name) 
+{
+	this->entityList = &this->player;
+
+	if (&this->images[name])
+    {
+		cout << "ball loaded" << endl;
+        return 0;
+    }
+	
+    string path = "img/" + name + ".png";
+
+	if (!this->playerImage.texture.loadFromFile(path)) 
+		return 1; // Erreur lors du chargement de l'image 
+
+	// Création du sprite et affectation de la texture 
+	this->playerImage.sprite.setTexture(this->playerImage.texture);
+	this->images["ball"] = this->playerImage;
+    cout << "ball created" << endl; 
+    return 0;
+}

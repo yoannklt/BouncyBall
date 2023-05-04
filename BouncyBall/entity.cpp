@@ -2,14 +2,12 @@
 
 Entity::Entity()
 {
-	Texture texture;
-	if (!texture.loadFromFile("img/ball.png"))
+	if (!this->texture.loadFromFile("img/ball.png"))
 		return; // Erreur lors du chargement de l'image 
 
 	// Création du sprite et affectation de la texture 
-	this->sprite.setTexture(texture);
+	this->sprite.setTexture(this->texture); 
 }
-
 
 Sprite Entity::getSprite()
 {

@@ -10,8 +10,12 @@ public:
 	Entity();
 	Sprite getSprite();
 
-private:
-	Sprite sprite;
+	struct objImage {
+		Texture texture;
+		Sprite sprite;
+	};
+	objImage image;
 
+private:
 };
 
